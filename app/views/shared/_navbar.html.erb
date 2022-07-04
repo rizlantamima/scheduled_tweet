@@ -11,10 +11,21 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-      <% if session[:user_id] %>
-        <li class="nav-item">
-          <%= button_to "Log out", logout_path, method: :delete, class:"btn nav-link" %>
-        </li>
+      <% if Current.user %>
+
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="accountNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i> <%= Current.user.email %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="accountNavbarDropdown">
+            <li>
+              <%= link_to "Change Password", password_path, class:"dropdown-item" %>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <%= button_to "Log out", logout_path, method: :delete, class:"dropdown-item" %></li>
+          </ul>
+        </li>      
       <% else %>        
         <li class="nav-item">
          <%= link_to "Sign In", sign_in_path, class:"nav-link" %>
