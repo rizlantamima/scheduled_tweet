@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tweets
+  resources :twitter_accounts, only: [:index,:show,:destroy]
   root to: "main#index"
   get "password-reset", to: "password_reset#index", as: :password_reset
   post "password-reset", to: "password_reset#create"

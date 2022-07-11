@@ -1,0 +1,23 @@
+<h1>Twitter accounts</h1>
+
+<div class="row">
+  <div class="col-12 my-2">
+    <%= button_to "Add new twitter account", "/auth/twitter", metod: :post, class: "btn btn-primary", data: { turbo: false } %>
+  </div>
+    <% @twitter_accounts.each do |twitter_account| %>
+    <div class="col-3">
+      <div class="card">
+        <div class="card-body">
+          <img class="rounded-circle" src="<%= twitter_account.image %>" >
+          <h5 class="card-title"><%= twitter_account.username %></h5>
+          <p class="card-text"><%= twitter_account.name %></p>
+          <%= link_to "View", twitter_account, class:"btn btn-sm btn-primary" %>
+          <%= button_to 'Disconnect', twitter_account, method: :delete,
+  form: { data: { turbo_confirm: 'Are you sure?' }}, class:"btn btn-sm btn-secondary mt-1" %>
+        </div>
+      </div>      
+    </div>
+
+    <% end %>
+</div>
+

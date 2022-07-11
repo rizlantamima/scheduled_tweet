@@ -1,5 +1,7 @@
 <h1> Welcome to scheduled tweets </h1>
-<%= Rails.application.credentials.dig(:twitter, :api_key) %>
+
+<% if Current.user %>
+<!-- <%= Rails.application.credentials.dig(:twitter, :api_key) %> -->
 <br />
-<%= Rails.application.credentials.dig(:twitter, :api_secret_key) %>
-<%= button_to "Connect to twitter", "/auth/twitter", metod: :post, class: "btn btn-primary", data: { turbo: false } %>
+<!-- <%= Rails.application.credentials.dig(:twitter, :api_secret_key) %> -->
+<% end %>

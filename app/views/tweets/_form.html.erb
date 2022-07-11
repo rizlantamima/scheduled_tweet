@@ -1,0 +1,42 @@
+<%= form_with(model: tweet) do |form| %>
+  <% if tweet.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+
+      <ul>
+        <% tweet.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :user_id, style: "display: none" %>
+    <%= form.hidden_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :twitter_account_id, style: "display: block" %>
+    <%= form.collection_select :twitter_account_id, Current.user.twitter_accounts, :id, :username,{}, {class: "form-control"} %>
+  </div>
+
+  <div>
+    <%= form.label "Tweets", style: "display: block" %>
+    <%= form.text_area :body, class:"form-control" %>
+  </div>
+
+  <div>
+    <%= form.label :published_at, style: "display: block" %>
+    <%= form.datetime_field :published_at, class:"form-control" %>
+  </div>
+
+  <div style="display: none">
+    <%= form.label "tweetId" %>
+    <%= form.text_field :tweet_id, class:"form-control" %>
+  </div>
+
+  <div>
+    <%= form.button "Schedule Tweet", class:"btn btn-primary mt-1", data:{turbo:false} %>
+  </div>
+<% end %>
