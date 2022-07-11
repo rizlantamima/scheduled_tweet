@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get "sign-in", to: "session#new", as: :sign_in
   post "sign-in", to: "session#create"  
   delete "logout", to: "session#destroy"
+  
+  get "/auth/twitter/callback", to: "omniauth_callbacks#twitter"
 # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
 # Defines the root path route ("/")
